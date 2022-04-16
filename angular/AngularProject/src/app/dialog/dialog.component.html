@@ -1,0 +1,46 @@
+<h1 mat-dialog-title>Agrega un Producto</h1>
+
+<div mat-dialog-content>
+    <form [formGroup]="productForm">
+    <mat-form-field appearance="outline">
+        <mat-label>Nombre del Producto</mat-label>
+        <input formControlName="nombre" matInput placeholder="nombre">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Categoria del Producto</mat-label>
+        <mat-select  formControlName="categoria" placeholder="categoria">
+            <mat-option value="Frutas">Frutas</mat-option>
+            <mat-option value="Verduras">Verduras</mat-option>
+            <mat-option value="Electronicos">Electronicos</mat-option>
+            <mat-option value="Almacen">Almacen</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Elegi una Fecha</mat-label>
+        <input formControlName="date" matInput [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <label for=""><h1>Estado del Producto</h1></label>
+      <mat-radio-group  formControlName="freshness" class="example-radio-group">
+          <mat-radio-button class="example-radio-button" *ngFor="let fresh of freshnessList" [value]="fresh">
+              {{fresh}}
+
+          </mat-radio-button>
+      </mat-radio-group>
+      <mat-form-field appearance="outline">
+        <mat-label>Precio</mat-label>
+        <input formControlName="precio" matInput  type="number" placeholder="precio">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Comentarios</mat-label>
+        <textarea formControlName="comentario" matInput></textarea>
+      </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>Cerrar</button>
+    <button mat-raised-button color="primary" (click)="addProduct()">{{actionBtn}}</button>
+
+</div>
